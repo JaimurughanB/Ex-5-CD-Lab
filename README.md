@@ -29,7 +29,34 @@ int yywrap()
  {
     return 1;
 }
- `````
+ ```````
+## Grammar.y
+````````
+%{
+#include <stdio.h>
+int yylex(void);
+void yyerror(const char *s);
+%}
+
+%token A B
+
+%%
+S   : A A A A A A A A A A B    { printf("Valid string\n"); }
+    | A S B                    { printf("Valid string\n"); }
+    ;
+
+%%
+
+int main() {
+    printf("Enter a string:\n");
+    yyparse();
+    return 0;
+}
+
+void yyerror(const char *s) {
+    printf("Invalid string\n");
+}
+`````````
 ## OUTPUT
 ![image](https://github.com/user-attachments/assets/0f511735-a130-4553-96b9-aa77ebbb8b50)
 
