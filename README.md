@@ -14,7 +14,7 @@ To write a YACC program to recognize the grammar anb where n>=10.
 8.	Enter a string as input and it is identified as valid or invalid.
 # PROGRAM:
 ## Grammar.l
-`````
+``````
 %{
 #include "y.tab.h"
 %}
@@ -25,37 +25,11 @@ b    { return B; }  // Recognize 'b' as token B
 .    { return 0; }  // End of input
 %%
 
-int yywrap() {
+int yywrap()
+ {
     return 1;
 }
-````
- ## Grammar.y
-```
-%{
-#include <stdio.h>
-int yylex(void);
-void yyerror(const char *s);
-%}
-
-%token A B
-
-%%
-S   : A A A A A A A A A A B    { printf("Valid string\n"); }
-    | A S B                    { printf("Valid string\n"); }
-    ;
-
-%%
-
-int main() {
-    printf("Enter a string:\n");
-    yyparse();
-    return 0;
-}
-
-void yyerror(const char *s) {
-    printf("Invalid string\n");
-}
-```
+ `````
 ## OUTPUT
 ![image](https://github.com/user-attachments/assets/0f511735-a130-4553-96b9-aa77ebbb8b50)
 
